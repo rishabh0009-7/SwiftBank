@@ -4,6 +4,7 @@
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
+import CompanyCarousel from "./CompanyCarousel";
 
 const HeroSection = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -24,7 +25,7 @@ const HeroSection = () => {
     <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
         {/* Left Content */}
-        <div className="space-y-8">
+        <div className="space-y-6">
           <div className="space-y-6">
             <motion.h1
               className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight"
@@ -63,8 +64,8 @@ const HeroSection = () => {
             </motion.button>
           </div>
 
-          {/* Stats */}
-          <div className="flex justify-between items-center pt-8">
+          {/* Stats - Reduced gap */}
+          <div className="flex justify-between items-center pt-4">
             <div className="text-center">
               <div className="text-2xl font-bold text-gray-900">75K+</div>
               <div className="text-sm text-gray-600">
@@ -79,11 +80,15 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Partner Logos */}
-          <div className="flex items-center space-x-8 pt-8">
-            <div className="text-gray-400 font-semibold">OpenAI</div>
-            <div className="text-gray-400 font-semibold">Raycast</div>
-            <div className="text-gray-400 font-semibold">ramp</div>
+          {/* Company Carousel */}
+          <div className="pt-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+            >
+              <CompanyCarousel />
+            </motion.div>
           </div>
         </div>
 
@@ -99,23 +104,23 @@ const HeroSection = () => {
             <div className="text-3xl font-bold text-gray-700">$</div>
           </motion.div>
 
-          {/* Credit Card */}
+          {/* Credit Card - Just fixed the overflow */}
           <motion.div
-            className="relative z-10 w-64 h-40 bg-purple-600 rounded-xl p-6 shadow-2xl"
+            className="relative z-10 w-72 h-48 bg-purple-600 rounded-xl p-6 shadow-2xl"
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 0.8 }}
           >
-            <div className="text-white space-y-4">
+            <div className="text-white space-y-4 h-full flex flex-col justify-between">
               <div className="flex justify-between items-start">
                 <div className="w-8 h-6 bg-white/20 rounded"></div>
                 <div className="w-6 h-6 bg-white/20 rounded-full"></div>
               </div>
               <div className="space-y-2">
-                <div className="text-sm opacity-80">Card Number</div>
-                <div className="text-lg font-mono">**** **** **** 1234</div>
+                <div className="text-xs opacity-80">Card Number</div>
+                <div className="text-base font-mono">**** **** **** 1234</div>
               </div>
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-end">
                 <div>
                   <div className="text-xs opacity-80">Valid Thru</div>
                   <div className="text-sm">12/25</div>

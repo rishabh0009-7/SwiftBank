@@ -64,7 +64,8 @@ const PricingSection = () => {
             className={`rounded-2xl p-8 relative overflow-hidden ${
               plan.popular
                 ? "bg-purple-600 text-white"
-                : "bg-purple-50 border border-purple-200"
+
+                : "bg-white border-2 border-purple-200 shadow-lg"
             }`}
             initial={{ y: 100, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
@@ -79,7 +80,13 @@ const PricingSection = () => {
             )}
 
             <div className="mb-8">
-              <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
+              <h3
+                className={`text-2xl font-bold mb-2 ${
+                  plan.popular ? "text-white" : "text-gray-900"
+                }`}
+              >
+                {plan.name}
+              </h3>
               <p
                 className={`mb-4 ${
                   plan.popular ? "opacity-90" : "text-gray-600"
@@ -88,7 +95,13 @@ const PricingSection = () => {
                 {plan.description}
               </p>
               <div className="flex items-baseline">
-                <span className="text-4xl font-bold">{plan.price}</span>
+                <span
+                  className={`text-4xl font-bold ${
+                    plan.popular ? "text-white" : "text-gray-900"
+                  }`}
+                >
+                  {plan.price}
+                </span>
                 <span
                   className={`ml-2 ${
                     plan.popular ? "opacity-70" : "text-gray-600"

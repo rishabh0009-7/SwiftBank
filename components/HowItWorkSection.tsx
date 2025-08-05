@@ -51,7 +51,7 @@ const HowItWorksSection = () => {
           {benefits.map((benefit, index) => (
             <motion.div
               key={index}
-              className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
+              className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
               initial={{ y: 100, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: index * 0.1 }}
@@ -64,16 +64,24 @@ const HowItWorksSection = () => {
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 {benefit.title}
               </h3>
-              <p className="text-gray-600 text-sm">{benefit.description}</p>
+              <p className="text-gray-600 text-sm mb-4">
+                {benefit.description}
+              </p>
 
               {/* Special content for specific cards */}
               {benefit.title === "Always Protected" && (
-                <div className="mt-4 p-3 bg-gray-50 rounded-lg">
-                  <div className="text-xs text-gray-500 mb-1">Transaction</div>
-                  <div className="text-sm font-medium">$1,234.56</div>
+                <div className="mt-4 p-3 bg-gray-50 rounded-lg border border-gray-200">
+                  <div className="text-xs text-gray-500 mb-1 font-medium">
+                    Transaction
+                  </div>
+                  <div className="text-sm font-semibold text-gray-900">
+                    $1,234.56
+                  </div>
                   <div className="flex items-center mt-2">
                     <div className="w-4 h-4 bg-green-500 rounded-full mr-2"></div>
-                    <span className="text-xs text-green-600">Verified</span>
+                    <span className="text-xs text-green-600 font-medium">
+                      Verified
+                    </span>
                   </div>
                 </div>
               )}
@@ -83,7 +91,9 @@ const HowItWorksSection = () => {
                   <div className="text-2xl font-bold text-gray-900">
                     $1,876,580
                   </div>
-                  <div className="text-xs text-gray-500">Total Assets</div>
+                  <div className="text-xs text-gray-500 font-medium">
+                    Total Assets
+                  </div>
                   <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
                     <div
                       className="bg-green-500 h-2 rounded-full"
@@ -94,9 +104,11 @@ const HowItWorksSection = () => {
               )}
 
               {benefit.title === "Get paid faster" && (
-                <div className="mt-4 p-3 bg-purple-50 rounded-lg text-center">
+                <div className="mt-4 p-3 bg-purple-50 rounded-lg text-center border border-purple-200">
                   <div className="text-2xl font-bold text-purple-600">$5</div>
-                  <div className="text-xs text-gray-500">Instant Transfer</div>
+                  <div className="text-xs text-gray-600 font-medium">
+                    Instant Transfer
+                  </div>
                 </div>
               )}
             </motion.div>
