@@ -110,7 +110,7 @@ const HeroSection = () => {
 
           {/* Credit Card - Moved a little lower */}
           <motion.div
-            className="relative z-10 w-72 h-48 bg-purple-600 rounded-xl p-6 shadow-2xl mt-8"
+            className="relative z-10 w-80 h-52 bg-purple-600 rounded-xl p-6 shadow-2xl mt-8"
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 0.8 }}
