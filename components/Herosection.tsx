@@ -23,9 +23,14 @@ const HeroSection = () => {
 
   return (
     <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
+      <div className="grid lg:grid-cols-2 gap-12 items-start min-h-[80vh]">
         {/* Left Content */}
-        <div className="space-y-6">
+        <motion.div
+          className="space-y-6"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
           <div className="space-y-6">
             <motion.h1
               className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight"
@@ -64,8 +69,13 @@ const HeroSection = () => {
             </motion.button>
           </div>
 
-          {/* Stats - Reduced gap */}
-          <div className="flex justify-between items-center pt-4">
+          {/* Stats - Much tighter gap */}
+          <motion.div
+            className="flex justify-between items-center pt-2 max-w-xs"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          >
             <div className="text-center">
               <div className="text-2xl font-bold text-gray-900">75K+</div>
               <div className="text-sm text-gray-600">
@@ -78,25 +88,19 @@ const HeroSection = () => {
                 Beneficial User Cashback
               </div>
             </div>
-          </div>
+          </motion.div>
+        </motion.div>
 
-          {/* Company Carousel */}
-          <div className="pt-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              <CompanyCarousel />
-            </motion.div>
-          </div>
-        </div>
-
-        {/* Right Visual Elements */}
-        <div className="relative flex justify-center items-center">
-          {/* Metallic Coin */}
+        {/* Right Visual Elements - Credit card moved a little lower */}
+        <motion.div
+          className="relative flex justify-center items-start"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+        >
+          {/* Metallic Coin - Positioned better */}
           <motion.div
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 w-32 h-32 bg-gradient-to-br from-gray-300 to-gray-500 rounded-full flex items-center justify-center shadow-2xl"
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 w-32 h-32 bg-gradient-to-br from-gray-300 to-gray-500 rounded-full flex items-center justify-center shadow-2xl"
             initial={{ rotate: -15, scale: 0 }}
             animate={{ rotate: -15, scale: 1 }}
             transition={{ duration: 1, delay: 0.5 }}
@@ -104,9 +108,9 @@ const HeroSection = () => {
             <div className="text-3xl font-bold text-gray-700">$</div>
           </motion.div>
 
-          {/* Credit Card - Just fixed the overflow */}
+          {/* Credit Card - Moved a little lower */}
           <motion.div
-            className="relative z-10 w-72 h-48 bg-purple-600 rounded-xl p-6 shadow-2xl"
+            className="relative z-10 w-72 h-48 bg-purple-600 rounded-xl p-6 shadow-2xl mt-8"
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 0.8 }}
@@ -130,9 +134,9 @@ const HeroSection = () => {
             </div>
           </motion.div>
 
-          {/* Wallet */}
+          {/* Wallet - Positioned better */}
           <motion.div
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 w-28 h-20 bg-gray-800 rounded-lg shadow-2xl"
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 w-28 h-20 bg-gray-800 rounded-lg shadow-2xl"
             initial={{ rotate: 15, scale: 0 }}
             animate={{ rotate: 15, scale: 1 }}
             transition={{ duration: 1, delay: 1.1 }}
@@ -143,8 +147,18 @@ const HeroSection = () => {
               <div className="w-3/4 h-3 bg-gray-700 rounded"></div>
             </div>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
+
+      {/* Company Carousel - Full Width */}
+      <motion.div
+        className="w-full mt-16"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.8 }}
+      >
+        <CompanyCarousel />
+      </motion.div>
     </section>
   );
 };

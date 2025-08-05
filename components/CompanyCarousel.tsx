@@ -94,12 +94,12 @@ const CompanyCarousel = () => {
   }, [api]);
 
   return (
-    <div className="w-full flex justify-center">
-      <div className="w-full max-w-6xl mx-auto px-4">
+    <div className="w-full overflow-hidden">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
         <Carousel
           setApi={setApi}
           opts={{
-            align: "center",
+            align: "start",
             loop: true,
             skipSnaps: false,
           }}
@@ -109,7 +109,7 @@ const CompanyCarousel = () => {
             {companies.map((company, index) => (
               <CarouselItem
                 key={index}
-                className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
+                className="pl-2 md:pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5"
               >
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
