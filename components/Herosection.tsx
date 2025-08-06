@@ -4,7 +4,6 @@
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
-import CompanyCarousel from "./CompanyCarousel";
 
 const HeroSection = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -70,37 +69,16 @@ const HeroSection = () => {
               Book a Demo
             </motion.button>
           </div>
-
-          {/* Stats - Much tighter gap */}
-          <motion.div
-            className="flex justify-between items-center pt-2 max-w-xs"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-          >
-            <div className="text-center">
-              <div className="text-2xl font-bold text-gray-900">75K+</div>
-              <div className="text-sm text-gray-600">
-                Satisfied users globally
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-gray-900">92%</div>
-              <div className="text-sm text-gray-600">
-                Beneficial User Cashback
-              </div>
-            </div>
-          </motion.div>
         </motion.div>
 
-        {/* Right Visual Elements - Credit card moved a little lower */}
+        {/* Right Visual Elements */}
         <motion.div
           className="relative flex justify-center items-start"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          {/* Metallic Coin - Positioned better */}
+          {/* Metallic Coin */}
           <motion.div
             className="absolute left-4 top-1/2 transform -translate-y-1/2 w-32 h-32 bg-gradient-to-br from-gray-300 to-gray-500 rounded-full flex items-center justify-center shadow-2xl"
             initial={{ rotate: -15, scale: 0 }}
@@ -110,7 +88,7 @@ const HeroSection = () => {
             <div className="text-3xl font-bold text-gray-700">$</div>
           </motion.div>
 
-          {/* Credit Card - Moved a little lower */}
+          {/* Credit Card */}
           <motion.div
             className="relative z-10 w-80 h-52 bg-purple-600 rounded-xl p-6 shadow-2xl mt-8"
             initial={{ y: 50, opacity: 0 }}
@@ -136,7 +114,7 @@ const HeroSection = () => {
             </div>
           </motion.div>
 
-          {/* Wallet - Positioned better */}
+          {/* Wallet */}
           <motion.div
             className="absolute right-4 top-1/2 transform -translate-y-1/2 w-28 h-20 bg-gray-800 rounded-lg shadow-2xl"
             initial={{ rotate: 15, scale: 0 }}
@@ -152,14 +130,28 @@ const HeroSection = () => {
         </motion.div>
       </div>
 
-      {/* Company Carousel - Full Width */}
+      {/* Centered Stats Section - Moved outside grid and made bigger */}
       <motion.div
-        className="w-full mt-16"
+        className="flex justify-center items-center pt-16"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.8 }}
+        transition={{ duration: 0.6, delay: 0.6 }}
       >
-        <CompanyCarousel />
+        <div className="flex justify-center items-center gap-16 bg-white/50 backdrop-blur-sm rounded-2xl px-12 py-8 shadow-lg border border-gray-100">
+          <div className="text-center">
+            <div className="text-5xl font-bold text-gray-900 mb-2">72K+</div>
+            <div className="text-lg text-gray-600 font-medium">
+              Satisfied users globally
+            </div>
+          </div>
+          <div className="w-px h-16 bg-gray-300"></div>
+          <div className="text-center">
+            <div className="text-5xl font-bold text-gray-900 mb-2">92%</div>
+            <div className="text-lg text-gray-600 font-medium">
+              Beneficial User Cashback
+            </div>
+          </div>
+        </div>
       </motion.div>
     </section>
   );

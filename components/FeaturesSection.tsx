@@ -2,36 +2,26 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  Shield,
-  Home,
-  CheckCircle,
-  Folder,
-  CreditCard,
-  BarChart2,
-  Users,
-  KeyRound,
-} from "lucide-react";
 
 const features = [
   {
-    icon: KeyRound,
+    image: "/apikey.png", // Image 1 - Key for Banking Core APIs
     title: "Banking Core APIs",
     description:
       "Transactions, deposits, balances — all accessible via robust APIs.",
   },
   {
-    icon: Shield,
+    image: "/kyc.png", // Image 2 - Person with document for KYC
     title: "KYC Module",
     description: "Seamless ID verification flow for onboarding and compliance.",
   },
   {
-    icon: CreditCard,
+    image: "/cardui.png", // Image 3 - Card and phone for Virtual Cards
     title: "Virtual Cards UI",
     description: "Realistic, customizable card previews for your users.",
   },
   {
-    icon: BarChart2,
+    image: "/analytics-icon.png", // Image 4 - Charts for Analytics
     title: "Analytics Dashboard",
     description: "Track spend, generate reports, and gain actionable insights.",
   },
@@ -57,7 +47,7 @@ const FeaturesSection = () => {
           Everything you need to launch a digital bank
         </h2>
         <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-          SwiftFi provides all the building blocks — from core banking APIs to
+          SwiftBank provides all the building blocks — from core banking APIs to
           KYC, analytics, and admin tools — so you can focus on your customers,
           not infrastructure.
         </p>
@@ -74,15 +64,25 @@ const FeaturesSection = () => {
             viewport={{ once: true }}
             whileHover={{ y: -8 }}
           >
-            <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center mb-4">
-              <feature.icon className="w-6 h-6 text-white" />
+            {/* Centered Image Container */}
+            <div className="flex justify-center mb-6">
+              <div className="w-16 h-16 flex items-center justify-center">
+                <img 
+                  src={feature.image} 
+                  alt={feature.title}
+                  className="w-full h-full object-contain"
+                />
+              </div>
             </div>
-            <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">
-              {feature.title}
-            </h3>
-            <p className="text-gray-600 text-xs sm:text-sm">
-              {feature.description}
-            </p>
+            
+            <div className="text-center">
+              <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">
+                {feature.title}
+              </h3>
+              <p className="text-gray-600 text-xs sm:text-sm">
+                {feature.description}
+              </p>
+            </div>
           </motion.div>
         ))}
       </div>

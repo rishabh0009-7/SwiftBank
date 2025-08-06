@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/Herosection";
-import FeaturesSection from "@/components/FaeturesSection";
+import FeaturesSection from "@/components/FeaturesSection";
 import HowItWorksSection from "@/components/HowItWorkSection";
 import GlobalBankingSection from "@/components/GlobalBankingSection";
 import PricingSection from "@/components/PricingSection";
