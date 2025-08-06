@@ -2,28 +2,26 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Gift, Shield, TrendingUp, Zap } from "lucide-react";
+import { Monitor, IdCard, CreditCard } from "lucide-react";
 
 const benefits = [
   {
-    icon: Gift,
-    title: "Earn Rewards",
-    description: "Get cashback and rewards on every transaction you make.",
+    icon: Monitor,
+    title: "Analytics Dashboard Demo",
+    description:
+      "See real-time spend, charts, and reports in our interactive dashboard preview.",
   },
   {
-    icon: Shield,
-    title: "Always Protected",
-    description: "Enterprise-grade security with real-time fraud detection.",
+    icon: IdCard,
+    title: "KYC Signup Flow Demo",
+    description:
+      "Experience the seamless onboarding and ID verification process.",
   },
   {
-    icon: TrendingUp,
-    title: "No asset volatility",
-    description: "Stable and secure investments with guaranteed returns.",
-  },
-  {
-    icon: Zap,
-    title: "Get paid faster",
-    description: "Instant transfers and quick payment processing.",
+    icon: CreditCard,
+    title: "Virtual Card UI Preview",
+    description:
+      "Preview customizable virtual cards as your users would see them.",
   },
 ];
 
@@ -39,11 +37,11 @@ const HowItWorksSection = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Future banking you need
+            See SwiftFi in action
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Whether you're a small business or a large corporation, we have a
-            plan that's right for you.
+            Explore our live demos: analytics dashboard, KYC signup, and virtual
+            card UI — all ready to power your fintech vision.
           </p>
         </motion.div>
 

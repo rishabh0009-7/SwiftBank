@@ -1,45 +1,58 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronDown } from 'lucide-react'
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 
 const faqs = [
   {
     question: "How quickly can we deploy SwiftBank?",
-    answer: "Most institutions can launch their digital banking platform within 4-8 weeks, depending on complexity and integration requirements."
+    answer:
+      "Most institutions can launch their digital banking platform within 4-8 weeks, depending on complexity and integration requirements.",
   },
   {
     question: "What compliance standards does SwiftBank support?",
-    answer: "We support all major compliance standards including PCI DSS, SOX, GDPR, and local banking regulations across multiple jurisdictions."
+    answer:
+      "We support all major compliance standards including PCI DSS, SOX, GDPR, and local banking regulations across multiple jurisdictions.",
   },
   {
     question: "Can SwiftBank integrate with our existing systems?",
-    answer: "Yes, our API-first architecture allows seamless integration with core banking systems, payment processors, and third-party services."
-  }
-]
+    answer:
+      "Yes, our API-first architecture allows seamless integration with core banking systems, payment processors, and third-party services.",
+  },
+  {
+    question: "Testimonial",
+    answer:
+      "\u201CSwiftFi let us launch our wallet app in 7 days.\u201D – Fintech Founder",
+    isTestimonial: true,
+  },
+];
 
 const FAQSection = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
       <div className="max-w-4xl mx-auto">
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
           initial={{ y: 50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            Frequently Asked Questions
+          </h2>
         </motion.div>
-        
+
         <div className="space-y-6">
           {faqs.map((faq, index) => (
             <motion.div
               key={index}
-              className="bg-white rounded-2xl p-6 shadow-sm cursor-pointer"
+              className={`bg-white rounded-2xl p-6 shadow-sm cursor-pointer ${
+                faq.isTestimonial ? "border-2 border-purple-500" : ""
+              }`}
               initial={{ y: 50, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: index * 0.1 }}
@@ -48,7 +61,13 @@ const FAQSection = () => {
               onClick={() => setOpenIndex(openIndex === index ? null : index)}
             >
               <div className="flex justify-between items-center">
-                <h3 className="text-lg font-semibold text-gray-900">{faq.question}</h3>
+                <h3
+                  className={`text-lg font-semibold ${
+                    faq.isTestimonial ? "text-purple-600" : "text-gray-900"
+                  }`}
+                >
+                  {faq.question}
+                </h3>
                 <motion.div
                   animate={{ rotate: openIndex === index ? 180 : 0 }}
                   transition={{ duration: 0.3 }}
@@ -56,7 +75,7 @@ const FAQSection = () => {
                   <ChevronDown className="w-5 h-5 text-gray-500" />
                 </motion.div>
               </div>
-              
+
               <AnimatePresence>
                 {openIndex === index && (
                   <motion.div
@@ -66,7 +85,15 @@ const FAQSection = () => {
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden"
                   >
-                    <p className="text-gray-600 mt-4">{faq.answer}</p>
+                    <p
+                      className={`mt-4 ${
+                        faq.isTestimonial
+                          ? "text-purple-700 font-bold text-lg"
+                          : "text-gray-600"
+                      }`}
+                    >
+                      {faq.answer}
+                    </p>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -75,7 +102,7 @@ const FAQSection = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default FAQSection
+export default FAQSection;

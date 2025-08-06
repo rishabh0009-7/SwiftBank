@@ -20,6 +20,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const companies = [
   {
@@ -28,6 +29,8 @@ const companies = [
     description: "AI Technology",
     color: "text-purple-600",
     bgColor: "bg-purple-50",
+    logo: "/openai-logo.svg",
+    useImage: true,
   },
   {
     name: "Raycast",
@@ -122,7 +125,19 @@ const CompanyCarousel = () => {
                       <div
                         className={`w-16 h-16 ${company.bgColor} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}
                       >
-                        <company.icon className={`w-8 h-8 ${company.color}`} />
+                        {company.useImage && company.logo ? (
+                          <Image
+                            src={company.logo}
+                            alt={company.name}
+                            width={32}
+                            height={32}
+                            className="w-8 h-8"
+                          />
+                        ) : (
+                          <company.icon
+                            className={`w-8 h-8 ${company.color}`}
+                          />
+                        )}
                       </div>
                       <div className="text-center">
                         <h3 className="font-semibold text-gray-900 text-lg mb-1">

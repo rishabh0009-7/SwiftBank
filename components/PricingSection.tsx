@@ -6,32 +6,48 @@ import { Check } from "lucide-react";
 
 const plans = [
   {
-    name: "Personal",
-    price: "$5",
-    description: "Perfect for individual users and personal banking needs",
+    name: "Free Sandbox",
+    price: "$0",
+    description:
+      "Test all features in a risk-free environment. No credit card required.",
     features: [
-      "Free transfers between friends",
-      "Basic security features",
-      "Mobile app access",
-      "24/7 customer support",
+      "Full API access (sandbox)",
+      "Virtual card UI preview",
+      "Demo analytics dashboard",
+      "Community support",
     ],
     popular: false,
-    buttonText: "Try for Free",
+    buttonText: "Try Free Sandbox",
   },
   {
-    name: "Business",
-    price: "$20",
-    description: "For small businesses and growing companies",
+    name: "Startup",
+    price: "$99",
+    description:
+      "For startups and new fintechs ready to launch their own digital bank.",
     features: [
-      "Advanced security features",
-      "Multi-currency support",
-      "Business analytics",
-      "Dedicated support team",
-      "API access",
-      "Custom integrations",
+      "Live API access",
+      "KYC & compliance module",
+      "Customizable virtual cards",
+      "Analytics & reporting",
+      "Email support",
     ],
     popular: true,
     buttonText: "Get Started",
+  },
+  {
+    name: "Enterprise",
+    price: "Contact Us",
+    description:
+      "For established businesses and global brands needing advanced features.",
+    features: [
+      "All Startup features",
+      "Dedicated account manager",
+      "Custom integrations",
+      "White-label admin panel",
+      "Priority support",
+    ],
+    popular: false,
+    buttonText: "Contact Sales",
   },
 ];
 
@@ -49,11 +65,11 @@ const PricingSection = () => {
         viewport={{ once: true }}
       >
         <h2 className="text-4xl font-bold text-gray-900 mb-4">
-          Plans for every budget
+          Simple, transparent pricing
         </h2>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          Whether you're a small business or a large corporation, we have a plan
-          that's right for you.
+          Choose the plan that fits your launch — from free sandbox to
+          enterprise scale.
         </p>
       </motion.div>
 
@@ -64,7 +80,6 @@ const PricingSection = () => {
             className={`rounded-2xl p-8 relative overflow-hidden ${
               plan.popular
                 ? "bg-purple-600 text-white"
-
                 : "bg-white border-2 border-purple-200 shadow-lg"
             }`}
             initial={{ y: 100, opacity: 0 }}

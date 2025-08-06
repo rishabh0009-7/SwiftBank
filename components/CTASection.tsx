@@ -33,7 +33,7 @@ const CTASection = () => {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          Simplify payments management
+          Launch your own digital bank today.
         </motion.h2>
 
         <motion.p
@@ -43,8 +43,8 @@ const CTASection = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          Easy and fast international business account that saves you money
-          wherever you want to use it.
+          Book a demo or try our free sandbox to see how SwiftFi can power your
+          fintech vision.
         </motion.p>
 
         <motion.div
@@ -63,7 +63,7 @@ const CTASection = () => {
             }}
             whileTap={{ scale: 0.95 }}
           >
-            Start Now
+            Book a Demo
           </motion.button>
         </motion.div>
       </div>

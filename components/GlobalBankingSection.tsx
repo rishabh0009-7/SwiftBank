@@ -10,6 +10,10 @@ import {
   CreditCard,
   ShoppingCart,
   Settings,
+  Users,
+  Globe,
+  Briefcase,
+  Star,
 } from "lucide-react";
 
 const integrations = [
@@ -20,6 +24,13 @@ const integrations = [
   { icon: CreditCard, label: "Billing" },
   { icon: ShoppingCart, label: "Marketing" },
   { icon: Settings, label: "Manage" },
+];
+
+const customers = [
+  { icon: Users, label: "Fintech Founders" },
+  { icon: Star, label: "Influencers & Creators" },
+  { icon: Globe, label: "International Businesses" },
+  { icon: Briefcase, label: "Embedded Finance Companies" },
 ];
 
 const GlobalBankingSection = () => {
@@ -40,20 +51,19 @@ const GlobalBankingSection = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-            Shop everywhere,
+            Built for innovators
             <br />
-            anywhere
+            and global teams
           </h2>
           <p className="text-xl mb-12 max-w-3xl mx-auto opacity-90 leading-relaxed">
-            It's now a lot easier to pay someone. All you need is an email
-            address to send cross-border commercial payments in over 25
-            currencies to almost anyone, anywhere.
+            SwiftFi empowers fintech founders, creators, and global businesses
+            to launch digital banking products fast — no code required.
           </p>
         </motion.div>
 
         {/* Integration Icons Grid */}
-        <div className="grid grid-cols-3 md:grid-cols-7 gap-6 mb-16 max-w-4xl mx-auto">
-          {integrations.map((integration, index) => (
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 max-w-4xl mx-auto">
+          {customers.map((customer, index) => (
             <motion.div
               key={index}
               className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 text-center group cursor-pointer border border-white/20"
@@ -72,9 +82,9 @@ const GlobalBankingSection = () => {
                 className="w-12 h-12 bg-white/20 rounded-xl mx-auto mb-4 flex items-center justify-center group-hover:rotate-12 transition-transform duration-300"
                 whileHover={{ rotate: 12 }}
               >
-                <integration.icon className="w-6 h-6 text-white" />
+                <customer.icon className="w-6 h-6 text-white" />
               </motion.div>
-              <div className="font-medium text-sm">{integration.label}</div>
+              <div className="font-medium text-sm">{customer.label}</div>
             </motion.div>
           ))}
         </div>

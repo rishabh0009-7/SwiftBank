@@ -2,30 +2,40 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Shield, Home, CheckCircle, Folder } from "lucide-react";
+import {
+  Shield,
+  Home,
+  CheckCircle,
+  Folder,
+  CreditCard,
+  BarChart2,
+  Users,
+  KeyRound,
+} from "lucide-react";
 
 const features = [
   {
-    icon: Shield,
-    title: "Security Teams",
+    icon: KeyRound,
+    title: "Banking Core APIs",
     description:
-      "Bank-grade security with end-to-end encryption and fraud detection.",
+      "Transactions, deposits, balances — all accessible via robust APIs.",
   },
   {
-    icon: Home,
-    title: "Safety Funds",
-    description: "Protected funds with insurance coverage and secure storage.",
+    icon: Shield,
+    title: "KYC Module",
+    description: "Seamless ID verification flow for onboarding and compliance.",
   },
   {
-    icon: CheckCircle,
-    title: "Authentication",
-    description: "Multi-factor authentication and biometric security measures.",
+    icon: CreditCard,
+    title: "Virtual Cards UI",
+    description: "Realistic, customizable card previews for your users.",
   },
   {
-    icon: Folder,
-    title: "Account Place",
-    description: "Organized account management with easy access and control.",
+    icon: BarChart2,
+    title: "Analytics Dashboard",
+    description: "Track spend, generate reports, and gain actionable insights.",
   },
+  
 ];
 
 const FeaturesSection = () => {
@@ -45,11 +55,12 @@ const FeaturesSection = () => {
         viewport={{ once: true }}
       >
         <h2 className="text-4xl font-bold text-gray-900 mb-4">
-          The strategic choice
+          Everything you need to launch a digital bank
         </h2>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          We're on a mission to bring transparency to finance and show you
-          upfront.
+          SwiftFi provides all the building blocks — from core banking APIs to
+          KYC, analytics, and admin tools — so you can focus on your customers,
+          not infrastructure.
         </p>
       </motion.div>
 

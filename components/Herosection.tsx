@@ -22,8 +22,8 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      <div className="grid lg:grid-cols-2 gap-12 items-start min-h-[80vh]">
+    <section className="pt-20 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start min-h-[70vh]">
         {/* Left Content */}
         <motion.div
           className="space-y-6"
@@ -33,28 +33,30 @@ const HeroSection = () => {
         >
           <div className="space-y-6">
             <motion.h1
-              className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight"
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 1, ease: "easeOut" }}
             >
-              Enhance your <span className="text-purple-600">Financial</span>
+              Launch your own{" "}
+              <span className="text-purple-600">digital bank</span>
               <br />
-              with <span className="text-purple-600">SwiftBank</span>
+              in days without writing a single line of code.
             </motion.h1>
 
             <motion.p
-              className="text-xl text-gray-600 max-w-lg"
+              className="text-base sm:text-lg md:text-xl text-gray-600 max-w-lg"
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
             >
-              Moving money should never take more than a few taps. Transfers are
-              always free between friends.
+              SwiftFi is a white-label neobank builder. Launch your own branded
+              digital bank with user accounts, virtual cards, KYC, analytics,
+              and more all in one platform.
             </motion.p>
 
             <motion.button
-              className="bg-purple-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-purple-700 transition-colors"
+              className="bg-purple-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg hover:bg-purple-700 transition-colors w-full sm:w-auto"
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
@@ -65,25 +67,29 @@ const HeroSection = () => {
               }}
               whileTap={{ scale: 0.95 }}
             >
-              Send Money now
+              Book a Demo
             </motion.button>
           </div>
 
           {/* Stats - Much tighter gap */}
           <motion.div
-            className="flex justify-between items-center pt-2 max-w-xs"
+            className="flex flex-col sm:flex-row justify-between items-center pt-2 max-w-xs gap-4 sm:gap-0"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
           >
             <div className="text-center">
-              <div className="text-2xl font-bold text-gray-900">75K+</div>
+              <div className="text-xl sm:text-2xl font-bold text-gray-900">
+                75K+
+              </div>
               <div className="text-sm text-gray-600">
                 Satisfied users globally
               </div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-gray-900">92%</div>
+              <div className="text-xl sm:text-2xl font-bold text-gray-900">
+                92%
+              </div>
               <div className="text-sm text-gray-600">
                 Beneficial User Cashback
               </div>
@@ -91,9 +97,9 @@ const HeroSection = () => {
           </motion.div>
         </motion.div>
 
-        {/* Right Visual Elements - Credit card moved a little lower */}
+        {/* Right Visual Elements - Hide on mobile */}
         <motion.div
-          className="relative flex justify-center items-start"
+          className="relative flex justify-center items-start hidden lg:flex"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
@@ -152,7 +158,7 @@ const HeroSection = () => {
 
       {/* Company Carousel - Full Width */}
       <motion.div
-        className="w-full mt-16"
+        className="w-full mt-12 sm:mt-16"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.8 }}
