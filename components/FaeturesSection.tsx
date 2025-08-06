@@ -35,40 +35,39 @@ const features = [
     title: "Analytics Dashboard",
     description: "Track spend, generate reports, and gain actionable insights.",
   },
-  
 ];
 
 const FeaturesSection = () => {
   return (
     <section
       id="features"
-      className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative"
+      className="py-16 sm:py-20 px-2 sm:px-6 lg:px-8 max-w-7xl mx-auto relative"
     >
       {/* Background Purple Shape */}
-      <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-96 h-96 bg-purple-100 rounded-full opacity-50 -z-10"></div>
+      <div className="hidden md:block absolute right-0 top-1/2 transform -translate-y-1/2 w-72 md:w-96 h-72 md:h-96 bg-purple-100 rounded-full opacity-50 -z-10"></div>
 
       <motion.div
-        className="text-center mb-16"
+        className="text-center mb-10 sm:mb-16"
         initial={{ y: 50, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
       >
-        <h2 className="text-4xl font-bold text-gray-900 mb-4">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
           Everything you need to launch a digital bank
         </h2>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+        <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
           SwiftFi provides all the building blocks — from core banking APIs to
           KYC, analytics, and admin tools — so you can focus on your customers,
           not infrastructure.
         </p>
       </motion.div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
         {features.map((feature, index) => (
           <motion.div
             key={index}
-            className="animate-on-scroll bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
+            className="animate-on-scroll bg-white rounded-2xl p-5 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
             initial={{ y: 100, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: index * 0.1 }}
@@ -78,10 +77,12 @@ const FeaturesSection = () => {
             <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center mb-4">
               <feature.icon className="w-6 h-6 text-white" />
             </div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
+            <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">
               {feature.title}
             </h3>
-            <p className="text-gray-600 text-sm">{feature.description}</p>
+            <p className="text-gray-600 text-xs sm:text-sm">
+              {feature.description}
+            </p>
           </motion.div>
         ))}
       </div>

@@ -5,13 +5,13 @@ import { motion } from "framer-motion";
 
 const CTASection = () => {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-purple-600 text-white relative overflow-hidden">
+    <section className="py-12 sm:py-20 px-2 sm:px-6 lg:px-8 bg-purple-600 text-white relative overflow-hidden">
       {/* Background Purple Shape */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-purple-500 rounded-full opacity-20 -z-10"></div>
+      <div className="hidden sm:block absolute top-0 right-0 w-56 sm:w-96 h-56 sm:h-96 bg-purple-500 rounded-full opacity-20 -z-10"></div>
 
       {/* Metallic Coin */}
       <motion.div
-        className="absolute top-10 right-20 w-24 h-24 bg-gradient-to-br from-gray-300 to-gray-500 rounded-full flex items-center justify-center shadow-2xl"
+        className="hidden sm:flex absolute top-6 sm:top-10 right-6 sm:right-20 w-16 sm:w-24 h-16 sm:h-24 bg-gradient-to-br from-gray-300 to-gray-500 rounded-full items-center justify-center shadow-2xl"
         animate={{
           y: [0, -10, 0],
           rotate: [0, 5, 0],
@@ -22,12 +22,12 @@ const CTASection = () => {
           ease: "easeInOut",
         }}
       >
-        <div className="text-2xl font-bold text-gray-700">$</div>
+        <div className="text-lg sm:text-2xl font-bold text-gray-700">$</div>
       </motion.div>
 
-      <div className="max-w-4xl mx-auto text-center relative z-10">
+      <div className="max-w-2xl sm:max-w-4xl mx-auto text-center relative z-10">
         <motion.h2
-          className="text-4xl font-bold mb-6"
+          className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6"
           initial={{ y: 50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -37,7 +37,7 @@ const CTASection = () => {
         </motion.h2>
 
         <motion.p
-          className="text-xl mb-8 opacity-90 max-w-2xl mx-auto"
+          className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 opacity-90 max-w-xl sm:max-w-2xl mx-auto"
           initial={{ y: 30, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -55,7 +55,7 @@ const CTASection = () => {
           viewport={{ once: true }}
         >
           <motion.button
-            className="bg-white text-purple-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-50 transition-colors"
+            className="bg-white text-purple-600 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg hover:bg-gray-50 transition-colors w-full sm:w-auto"
             whileHover={{
               scale: 1.05,
               y: -5,

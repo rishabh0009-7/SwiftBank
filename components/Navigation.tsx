@@ -2,9 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { Menu, X } from "lucide-react";
+import Image from "next/image";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,14 +33,18 @@ const Navigation = () => {
           {/* Logo */}
           <div className="flex items-center">
             <div className="flex items-center">
-              <div className="w-8 h-8 bg-purple-600 rounded-lg mr-3 flex items-center justify-center">
-                <div className="w-4 h-4 bg-white rounded-sm"></div>
-              </div>
+              <Image
+                src="/logo.png"
+                alt="SwiftFi Logo"
+                width={40}
+                height={40}
+                className="mr-3"
+              />
               <span className="text-xl font-bold text-gray-900">SwiftBank</span>
             </div>
           </div>
 
-          {/* Navigation Links */}
+          {/* Desktop Navigation Links */}
           <div className="hidden md:flex items-center space-x-8">
             <a
               href="#personal"
@@ -65,8 +72,23 @@ const Navigation = () => {
             </a>
           </div>
 
-          {/* Action Buttons */}
-          <div className="flex items-center space-x-4">
+          {/* Mobile Hamburger */}
+          <div className="md:hidden flex items-center">
+            <button
+              onClick={() => setMobileOpen((open) => !open)}
+              className="text-gray-700 hover:text-purple-600 focus:outline-none"
+              aria-label="Open menu"
+            >
+              {mobileOpen ? (
+                <X className="w-7 h-7" />
+              ) : (
+                <Menu className="w-7 h-7" />
+              )}
+            </button>
+          </div>
+
+          {/* Action Buttons (Desktop) */}
+          <div className="hidden md:flex items-center space-x-4">
             <motion.button
               className="text-purple-600 hover:text-purple-700 font-medium transition-colors"
               whileHover={{ scale: 1.05 }}
@@ -87,6 +109,56 @@ const Navigation = () => {
           </div>
         </div>
       </div>
+
+      {/* Mobile Menu */}
+      {mobileOpen && (
+        <div className="md:hidden bg-white/95 backdrop-blur-md shadow-lg px-4 pt-2 pb-4">
+          <div className="flex flex-col space-y-3">
+            <a
+              href="#personal"
+              className="text-gray-700 hover:text-purple-600 font-medium transition-colors py-2"
+              onClick={() => setMobileOpen(false)}
+            >
+              Personal
+            </a>
+            <a
+              href="#business"
+              className="text-gray-700 hover:text-purple-600 font-medium transition-colors py-2"
+              onClick={() => setMobileOpen(false)}
+            >
+              Business
+            </a>
+            <a
+              href="#enterprise"
+              className="text-gray-700 hover:text-purple-600 font-medium transition-colors py-2"
+              onClick={() => setMobileOpen(false)}
+            >
+              Enterprise
+            </a>
+            <a
+              href="#developer"
+              className="text-gray-700 hover:text-purple-600 font-medium transition-colors py-2"
+              onClick={() => setMobileOpen(false)}
+            >
+              Developer
+            </a>
+            <div className="flex space-x-2 mt-2">
+              <button
+                className="flex-1 text-purple-600 border border-purple-600 rounded-lg py-2 font-medium hover:bg-purple-50 transition-colors"
+                onClick={() => setMobileOpen(false)}
+              >
+                Login
+              </button>
+              <button
+                className="flex-1 bg-purple-600 text-white rounded-lg py-2 font-medium hover:bg-purple-700 transition-colors"
+                onClick={() => setMobileOpen(false)}
+              >
+                Sign Up
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </motion.nav>
   );
 };

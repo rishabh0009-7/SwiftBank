@@ -40,15 +40,20 @@ const StatsCounter = () => {
   }, []);
 
   return (
-    <div ref={ref} className="flex space-x-8 pt-8">
+    <div
+      ref={ref}
+      className="flex flex-wrap justify-center gap-6 sm:gap-8 pt-6 sm:pt-8"
+    >
       {stats.map((stat, index) => (
-        <div key={index} className="text-center">
+        <div key={index} className="text-center min-w-[120px]">
           <CounterAnimation
             target={stat.target}
             isVisible={isVisible}
             suffix={stat.suffix}
           />
-          <div className="text-sm text-gray-600 font-medium">{stat.label}</div>
+          <div className="text-xs sm:text-sm text-gray-600 font-medium mt-1">
+            {stat.label}
+          </div>
         </div>
       ))}
     </div>

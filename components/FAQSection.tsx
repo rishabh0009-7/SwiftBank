@@ -32,25 +32,25 @@ const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
-      <div className="max-w-4xl mx-auto">
+    <section className="py-12 sm:py-20 px-2 sm:px-6 lg:px-8 bg-gray-50">
+      <div className="max-w-2xl sm:max-w-4xl mx-auto">
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-16"
           initial={{ y: 50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Frequently Asked Questions
           </h2>
         </motion.div>
 
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
           {faqs.map((faq, index) => (
             <motion.div
               key={index}
-              className={`bg-white rounded-2xl p-6 shadow-sm cursor-pointer ${
+              className={`bg-white rounded-2xl p-4 sm:p-6 shadow-sm cursor-pointer ${
                 faq.isTestimonial ? "border-2 border-purple-500" : ""
               }`}
               initial={{ y: 50, opacity: 0 }}
@@ -62,7 +62,7 @@ const FAQSection = () => {
             >
               <div className="flex justify-between items-center">
                 <h3
-                  className={`text-lg font-semibold ${
+                  className={`text-base sm:text-lg font-semibold ${
                     faq.isTestimonial ? "text-purple-600" : "text-gray-900"
                   }`}
                 >
@@ -86,9 +86,9 @@ const FAQSection = () => {
                     className="overflow-hidden"
                   >
                     <p
-                      className={`mt-4 ${
+                      className={`mt-3 sm:mt-4 ${
                         faq.isTestimonial
-                          ? "text-purple-700 font-bold text-lg"
+                          ? "text-purple-700 font-bold text-base sm:text-lg"
                           : "text-gray-600"
                       }`}
                     >
