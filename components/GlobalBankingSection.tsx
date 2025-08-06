@@ -51,12 +51,12 @@ const GlobalBankingSection = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">
-            Built for innovators
+            Built for Innovators
             <br className="hidden sm:block" />
-            and global teams
+            and Global Teams
           </h2>
           <p className="text-base sm:text-lg md:text-xl mb-8 sm:mb-12 max-w-3xl mx-auto opacity-90 leading-relaxed">
-            SwiftFi empowers fintech founders, creators, and global businesses
+            SwiftBank empowers fintech founders, creators, and global businesses
             to launch digital banking products fast — no code required.
           </p>
         </motion.div>
