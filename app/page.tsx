@@ -9,6 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { PricingSection } from "@/components/pricing-section"
 import { Footerdemo } from "@/components/ui/footersection"
+import { Testimonials } from "@/components/ui/testimonials"
 import { Shield, Zap, BarChart3, Users, CheckCircle, ArrowRight, Star, Building2, CreditCard, PieChart, TrendingUp, Lock, Globe, Mail, Phone, MapPin, Code, Smartphone, Database, UserCheck, Activity, Layers, Home, DollarSign, FileText } from 'lucide-react'
 import Image from "next/image"
 import Link from "next/link"
@@ -119,6 +120,66 @@ export const TIERS = [
     cta: "Contact Sales",
     highlighted: true,
   },
+]
+
+// Testimonials data for SwiftBank
+const swiftBankTestimonials = [
+  {
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
+    text: 'SwiftBank cut our development time from 8 months to 2 weeks. The APIs are incredibly well-documented and the support team is fantastic.',
+    name: 'Alex Chen',
+    role: 'CTO',
+    company: 'PayFlow',
+    username: '@alexchen',
+    social: 'https://linkedin.com/in/alexchen'
+  },
+  
+  {
+    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
+    text: 'The white-label solution is perfect. Our customers think we built everything in-house. The customization options are endless.',
+    name: 'David Rodriguez',
+    role: 'Lead Developer',
+    company: 'FinTech Pro',
+    username: '@davidrodriguez',
+    social: 'https://linkedin.com/in/davidrodriguez'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face',
+    text: 'SwiftBank\'s KYC verification saved us months of compliance work. The automated document scanning is incredibly accurate.',
+    name: 'Emily Watson',
+    role: 'Product Manager',
+    company: 'Digital Wallet Co',
+    username: '@emilywatson',
+    social: 'https://linkedin.com/in/emilywatson'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face',
+    text: 'The virtual accounts feature is a game-changer. We can now offer instant account creation to our users.',
+    name: 'Michael Thompson',
+    role: 'VP Engineering',
+    company: 'QuickPay',
+    username: '@michaelthompson',
+    social: 'https://linkedin.com/in/michaelthompson'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face',
+    text: 'The transaction monitoring and fraud detection capabilities are enterprise-grade. Exactly what we needed for our scale.',
+    name: 'Jessica Park',
+    role: 'Head of Security',
+    company: 'SecureFinance',
+    username: '@jessicapark',
+    social: 'https://linkedin.com/in/jessicapark'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=150&h=150&fit=crop&crop=face',
+    text: 'SwiftBank\'s payment processing integration was seamless. UPI and card payments work flawlessly across all our platforms.',
+    name: 'Ryan Foster',
+    role: 'Technical Lead',
+    company: 'PaymentHub',
+    username: '@ryanfoster',
+    social: 'https://linkedin.com/in/ryanfoster'
+  },
+  
 ]
 
 export default function SwiftBankLanding() {
@@ -577,77 +638,10 @@ export default function SwiftBankLanding() {
       {/* Testimonials Section */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 lg:px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Loved by Developers & Founders
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              See what fintech leaders are saying about SwiftBank
-            </p>
-          </motion.div>
-
-          <motion.div
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            {[
-              {
-                name: "Alex Chen",
-                role: "CTO, PayFlow",
-                content: "SwiftBank cut our development time from 8 months to 2 weeks. The APIs are incredibly well-documented and the support team is fantastic.",
-                rating: 5
-              },
-              {
-                name: "Sarah Kim",
-                role: "Founder, NeoBank",
-                content: "Finally, a banking infrastructure that doesn't require a team of compliance experts. We launched our MVP in just 10 days.",
-                rating: 5
-              },
-              {
-                name: "David Rodriguez",
-                role: "Lead Developer, FinTech Pro",
-                content: "The white-label solution is perfect. Our customers think we built everything in-house. The customization options are endless.",
-                rating: 5
-              }
-            ].map((testimonial, index) => (
-              <motion.div
-                key={index}
-                variants={fadeInUp}
-                whileHover={{ y: -5, transition: { duration: 0.2 } }}
-              >
-                <Card className="border-gray-100 shadow-lg hover:shadow-xl transition-all duration-300 h-full bg-white/80 backdrop-blur-sm">
-                  <CardContent className="pt-6">
-                    <div className="flex mb-4">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                      ))}
-                    </div>
-                    <p className="text-gray-600 mb-6 leading-relaxed">"{testimonial.content}"</p>
-                    <div className="flex items-center">
-                      <div className="w-10 h-10 bg-emerald-100 rounded-full mr-3 flex items-center justify-center">
-                        <span className="text-emerald-600 font-semibold text-sm">
-                          {testimonial.name.split(' ').map(n => n[0]).join('')}
-                        </span>
-                      </div>
-                      <div>
-                        <p className="font-semibold text-gray-900">{testimonial.name}</p>
-                        <p className="text-sm text-gray-500">{testimonial.role}</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
+          <Testimonials 
+            testimonials={swiftBankTestimonials}
+            maxDisplayed={6}
+          />
         </div>
       </section>
 
