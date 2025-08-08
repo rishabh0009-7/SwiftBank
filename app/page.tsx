@@ -1,15 +1,14 @@
 "use client"
 
 import { useEffect, useRef } from "react"
-import { motion, useScroll, useTransform, useInView } from "framer-motion"
+import { motion, useScroll, useTransform } from "framer-motion"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { Shield, Zap, BarChart3, Users, CheckCircle, ArrowRight, Star, Building2, CreditCard, PieChart, TrendingUp, Lock, Globe, Mail, Phone, MapPin, Code, Smartphone, Database, UserCheck, Activity, Layers } from 'lucide-react'
+import { NavBar } from "@/components/tubelight-navbar"
+import { Shield, Zap, BarChart3, Users, CheckCircle, ArrowRight, Star, Building2, CreditCard, PieChart, TrendingUp, Lock, Globe, Mail, Phone, MapPin, Code, Smartphone, Database, UserCheck, Activity, Layers, Home, DollarSign, FileText } from 'lucide-react'
 import Image from "next/image"
 import Link from "next/link"
 
@@ -50,17 +49,17 @@ export default function SwiftBankLanding() {
     // GSAP animations
     const ctx = gsap.context(() => {
       // Hero animations
-      gsap.fromTo(".hero-title", 
+      gsap.fromTo(".hero-title",
         { opacity: 0, y: 100 },
         { opacity: 1, y: 0, duration: 1, ease: "power3.out", delay: 0.2 }
       )
       
-      gsap.fromTo(".hero-subtitle", 
+      gsap.fromTo(".hero-subtitle",
         { opacity: 0, y: 50 },
         { opacity: 1, y: 0, duration: 0.8, ease: "power3.out", delay: 0.5 }
       )
 
-      gsap.fromTo(".hero-cta", 
+      gsap.fromTo(".hero-cta",
         { opacity: 0, y: 30 },
         { opacity: 1, y: 0, duration: 0.6, ease: "power3.out", delay: 0.8 }
       )
@@ -91,7 +90,7 @@ export default function SwiftBankLanding() {
 
       // Scroll-triggered animations
       gsap.utils.toArray(".animate-on-scroll").forEach((element: any) => {
-        gsap.fromTo(element, 
+        gsap.fromTo(element,
           { opacity: 0, y: 50 },
           {
             opacity: 1,
@@ -111,7 +110,7 @@ export default function SwiftBankLanding() {
       // Number counter animation
       gsap.utils.toArray(".counter").forEach((counter: any) => {
         const target = parseInt(counter.getAttribute("data-target"))
-        gsap.fromTo(counter, 
+        gsap.fromTo(counter,
           { textContent: 0 },
           {
             textContent: target,
@@ -125,7 +124,6 @@ export default function SwiftBankLanding() {
           }
         )
       })
-
     }, heroRef)
 
     return () => ctx.revert()
@@ -133,43 +131,62 @@ export default function SwiftBankLanding() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 overflow-x-hidden">
-      {/* Header */}
-      <motion.header 
+      {/* Header with Logo, Tubelight Navigation, and Auth Buttons */}
+      <motion.header
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="border-b border-gray-200 bg-gray-50 sticky top-0 z-50"
+        className="border-b border-gray-200 bg-white/80 backdrop-blur-lg sticky top-0 z-50"
       >
         <div className="container mx-auto px-4 lg:px-6 h-16 flex items-center justify-between">
+          {/* Left: Logo and Title */}
           <motion.div 
             whileHover={{ scale: 1.05 }}
-            className="flex items-center space-x-2"
+            className="flex items-center space-x-2 flex-shrink-0"
           >
-            <div className="w-8 h-8 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center shadow-lg">
-              <Layers className="h-5 w-5 text-white" />
+            <div className="w-10 h-10 rounded-lg flex items-center justify-center overflow-hidden">
+              <Image
+                src="/logo-bank.png"
+                alt="SwiftBank Logo"
+                width={40}
+                height={40}
+                className="w-full h-full object-contain"
+              />
             </div>
             <span className="text-xl font-bold text-gray-900">SwiftBank</span>
           </motion.div>
-          <nav className="hidden md:flex items-center space-x-8">
-            {["Features", "How it Works", "Pricing", "Docs"].map((item, index) => (
-              <motion.div
-                key={item}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 + 0.3 }}
-              >
-                <Link 
-                  href={`#${item.toLowerCase().replace(" ", "-")}`} 
-                  className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition-colors"
-                >
-                  {item}
-                </Link>
-              </motion.div>
-            ))}
-          </nav>
-          <div className="flex items-center space-x-4">
+
+          {/* Center: Tubelight Navigation */}
+          <div className="flex-1 flex justify-center">
+            <div className="flex items-center gap-3 bg-white/80 border border-gray-200 backdrop-blur-lg py-2 px-2 rounded-full shadow-xl">
+              {[
+                { name: 'Home', url: '#', icon: Home },
+                { name: 'Features', url: '#features', icon: Zap },
+                { name: 'Pricing', url: '#pricing', icon: DollarSign },
+                { name: 'Docs', url: '#docs', icon: FileText },
+                { name: 'Contact', url: '#contact', icon: Users }
+              ].map((item) => {
+                const Icon = item.icon
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.url}
+                    className="relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-all duration-300 text-gray-600 hover:text-emerald-600 hover:bg-emerald-50"
+                  >
+                    <span className="hidden md:inline">{item.name}</span>
+                    <span className="md:hidden">
+                      <Icon size={18} strokeWidth={2.5} />
+                    </span>
+                  </Link>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* Right: Auth Buttons */}
+          <div className="flex items-center space-x-4 flex-shrink-0">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button variant="ghost" className="text-gray-700 hover:text-blue-600">
+              <Button variant="ghost" className="text-gray-700 hover:text-emerald-600 bg-white/80 backdrop-blur-sm border border-gray-200">
                 Sign In
               </Button>
             </motion.div>
@@ -184,7 +201,7 @@ export default function SwiftBankLanding() {
       </motion.header>
 
       {/* Hero Section */}
-      <section className="relative py-20 lg:py-32 bg-gray-50 overflow-hidden">
+      <section ref={heroRef} className="relative py-20 lg:py-32 bg-gray-50 overflow-hidden">
         {/* Background geometric shapes */}
         <div className="absolute inset-0 overflow-hidden">
           <motion.div 
@@ -197,7 +214,6 @@ export default function SwiftBankLanding() {
           />
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-purple-400/20 to-pink-400/20 rounded-full blur-3xl"></div>
         </div>
-
         <div className="container mx-auto px-4 lg:px-6 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
@@ -338,7 +354,6 @@ export default function SwiftBankLanding() {
               Complete banking infrastructure with developer-friendly APIs and white-label solutions
             </p>
           </motion.div>
-
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" ref={cardsRef}>
             {[
               {
@@ -350,7 +365,7 @@ export default function SwiftBankLanding() {
               },
               {
                 icon: UserCheck,
-                title: "KYC Verification", 
+                title: "KYC Verification",
                 description: "Automated identity verification with document scanning, face matching, and compliance reporting.",
                 color: "bg-gray-900",
                 number: "02"
@@ -358,7 +373,7 @@ export default function SwiftBankLanding() {
               {
                 icon: CreditCard,
                 title: "UPI & Card Integration",
-                description: "Complete payment processing with UPI, debit/credit cards, and international payment support.", 
+                description: "Complete payment processing with UPI, debit/credit cards, and international payment support.",
                 color: "bg-teal-500",
                 number: "03"
               },
@@ -366,7 +381,7 @@ export default function SwiftBankLanding() {
                 icon: Activity,
                 title: "Transaction Monitoring",
                 description: "Real-time fraud detection, transaction analytics, and automated compliance monitoring.",
-                color: "bg-gray-900", 
+                color: "bg-gray-900",
                 number: "04"
               },
               {
@@ -378,7 +393,7 @@ export default function SwiftBankLanding() {
               },
               {
                 icon: Smartphone,
-                title: "User & Admin Dashboards", 
+                title: "User & Admin Dashboards",
                 description: "White-label web and mobile dashboards with customizable branding and user management tools.",
                 color: "bg-teal-500",
                 number: "06"
@@ -417,7 +432,7 @@ export default function SwiftBankLanding() {
         </div>
       </section>
 
-      {/* How It Works Section - Now with Cards */}
+      {/* How It Works Section */}
       <section id="how-it-works" className="py-20 bg-white">
         <div className="container mx-auto px-4 lg:px-6">
           <motion.div
@@ -444,7 +459,7 @@ export default function SwiftBankLanding() {
                 icon: UserCheck
               },
               {
-                step: "02", 
+                step: "02",
                 title: "Integrate APIs",
                 description: "Use our comprehensive APIs and SDKs to integrate banking features into your app with just a few lines of code.",
                 color: "bg-gray-900",
@@ -452,7 +467,7 @@ export default function SwiftBankLanding() {
               },
               {
                 step: "03",
-                title: "Go Live", 
+                title: "Go Live",
                 description: "Deploy your digital banking app to production with full compliance, monitoring, and support included.",
                 color: "bg-teal-500",
                 icon: Zap
@@ -607,12 +622,12 @@ export default function SwiftBankLanding() {
                 },
                 {
                   name: "Startup",
-                  price: "$99", 
+                  price: "$99",
                   period: "/month",
                   description: "For early-stage fintech companies",
                   features: [
                     "Up to 1,000 users",
-                    "Live virtual accounts", 
+                    "Live virtual accounts",
                     "KYC verification",
                     "Payment processing",
                     "Email support",
@@ -642,7 +657,7 @@ export default function SwiftBankLanding() {
                   whileHover={{ y: -10, transition: { duration: 0.2 } }}
                   className="relative"
                 >
-                  {/* Most Popular Badge - Outside the card */}
+                  {/* Most Popular Badge */}
                   {plan.popular && (
                     <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-30">
                       <Badge className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-6 py-2 text-sm font-bold shadow-xl border-0 animate-pulse">
@@ -671,12 +686,12 @@ export default function SwiftBankLanding() {
                         ))}
                       </ul>
                       <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                        <Button 
+                        <Button
                           className={`w-full relative overflow-hidden group ${
-                            plan.popular 
-                              ? 'bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white' 
-                              : plan.color 
-                                ? 'bg-white text-gray-900 hover:bg-gray-100' 
+                            plan.popular
+                              ? 'bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white'
+                              : plan.color
+                                ? 'bg-white text-gray-900 hover:bg-gray-100'
                                 : 'bg-gradient-to-r from-gray-100 to-gray-200 hover:from-gray-200 hover:to-gray-300 text-gray-900'
                           }`}
                         >
@@ -749,8 +764,14 @@ export default function SwiftBankLanding() {
           >
             <motion.div variants={fadeInUp}>
               <div className="flex items-center space-x-2 mb-6">
-                <div className="w-8 h-8 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center shadow-lg">
-                  <Layers className="h-5 w-5 text-white" />
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center overflow-hidden">
+                  <Image
+                    src="/swiftbank-logo.png"
+                    alt="SwiftBank Logo"
+                    width={32}
+                    height={32}
+                    className="w-full h-full object-contain brightness-0 invert"
+                  />
                 </div>
                 <span className="text-xl font-bold">SwiftBank</span>
               </div>
