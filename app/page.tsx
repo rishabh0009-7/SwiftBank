@@ -660,7 +660,7 @@ export default function SwiftBankLanding() {
       {/* CTA Section */}
       <CTA />
 
-      {/* Footer - Updated with new component */}
+      {/* footer  */}
       <Footerdemo />
     </div>
   )
