@@ -1,212 +1,174 @@
-"use client"
+"use client";
 
-import { useEffect, useRef } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
-import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { PricingSection } from "@/components/pricing-section"
-import { Footerdemo } from "@/components/ui/footersection"
-import { Testimonials } from "@/components/ui/testimonials"
-import { Shield, Zap, BarChart3, Users, CheckCircle, ArrowRight, Star, Building2, CreditCard, PieChart, TrendingUp, Lock, Globe, Mail, Phone, MapPin, Code, Smartphone, Database, UserCheck, Activity, Layers, Home, DollarSign, FileText } from 'lucide-react'
-import Image from "next/image"
-import Link from "next/link"
-import { CTA } from "@/components/ui/Cta"
-import { LogoCarousel , fintechLogos } from "@/components/ui/carousel"
-import { GradientHeading } from "@/components/ui/gradiet-heading"
+import { useEffect, useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { PricingSection } from "@/components/pricing-section";
+import { Footerdemo } from "@/components/ui/footersection";
+import { Testimonials } from "@/components/ui/testimonials";
+import {
+  Shield,
+  Zap,
+  BarChart3,
+  Users,
+  CheckCircle,
+  ArrowRight,
+  Star,
+  Building2,
+  CreditCard,
+  PieChart,
+  TrendingUp,
+  Lock,
+  Globe,
+  Mail,
+  Phone,
+  MapPin,
+  Code,
+  Smartphone,
+  Database,
+  UserCheck,
+  Activity,
+  Layers,
+  Home,
+  DollarSign,
+  FileText,
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { CTA } from "@/components/ui/Cta";
+import { LogoCarousel, fintechLogos } from "@/components/ui/carousel";
+import { GradientHeading } from "@/components/ui/gradiet-heading";
+import { PAYMENT_FREQUENCIES, TIERS } from "@/lib/constants";
 
 // Register GSAP plugins
 if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger)
+  gsap.registerPlugin(ScrollTrigger);
 }
 
 // Animation variants
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, ease: "easeOut" }
-}
+  transition: { duration: 0.6, ease: "easeOut" },
+};
 
 const staggerContainer = {
   animate: {
     transition: {
-      staggerChildren: 0.1
-    }
-  }
-}
+      staggerChildren: 0.1,
+    },
+  },
+};
 
 const scaleIn = {
   initial: { opacity: 0, scale: 0.8 },
   animate: { opacity: 1, scale: 1 },
-  transition: { duration: 0.5, ease: "easeOut" }
-}
-
-// Pricing data
-export const PAYMENT_FREQUENCIES = ["monthly", "yearly"]
-
-export const TIERS = [
-  {
-    id: "sandbox",
-    name: "Sandbox",
-    price: {
-      monthly: "Free",
-      yearly: "Free",
-    },
-    description: "Perfect for development and testing",
-    features: [
-      "Unlimited API calls",
-      "Test virtual accounts",
-      "Mock KYC verification",
-      "Documentation access",
-      "Community support",
-    ],
-    cta: "Start Free",
-  },
-  {
-    id: "startup",
-    name: "Startup",
-    price: {
-      monthly: 99,
-      yearly: 75,
-    },
-    description: "For early-stage fintech companies",
-    features: [
-      "Up to 1,000 users",
-      "Live virtual accounts",
-      "KYC verification",
-      "Payment processing",
-      "Email support",
-      "White-label dashboard",
-    ],
-    cta: "Start Building",
-    popular: true,
-  },
-  {
-    id: "scale",
-    name: "Scale",
-    price: {
-      monthly: 299,
-      yearly: 249,
-    },
-    description: "For growing fintech businesses",
-    features: [
-      "Up to 10,000 users",
-      "Advanced analytics",
-      "Priority support",
-      "Custom integrations",
-      "Dedicated account manager",
-      "SLA guarantees",
-    ],
-    cta: "Start Building",
-  },
-  {
-    id: "enterprise",
-    name: "Enterprise",
-    price: {
-      monthly: "Custom",
-      yearly: "Custom",
-    },
-    description: "For multiple teams and large scale",
-    features: [
-      "Unlimited users",
-      "Custom integrations",
-      "Dedicated support",
-      "Advanced analytics",
-      "Priority features",
-      "White-glove onboarding",
-    ],
-    cta: "Contact Sales",
-    highlighted: true,
-  },
-]
+  transition: { duration: 0.5, ease: "easeOut" },
+};
 
 // Testimonials data for SwiftBank
 const swiftBankTestimonials = [
   {
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
-    text: 'SwiftBank cut our development time from 8 months to 2 weeks. The APIs are incredibly well-documented and the support team is fantastic.',
-    name: 'Alex Chen',
-    role: 'CTO',
-    company: 'PayFlow',
-    username: '@alexchen',
-    social: 'https://linkedin.com/in/alexchen'
+    image:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+    text: "SwiftBank cut our development time from 8 months to 2 weeks. The APIs are incredibly well-documented and the support team is fantastic.",
+    name: "Alex Chen",
+    role: "CTO",
+    company: "PayFlow",
+    username: "@alexchen",
+    social: "https://linkedin.com/in/alexchen",
   },
-  
+
   {
-    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
-    text: 'The white-label solution is perfect. Our customers think we built everything in-house. The customization options are endless.',
-    name: 'David Rodriguez',
-    role: 'Lead Developer',
-    company: 'FinTech Pro',
-    username: '@davidrodriguez',
-    social: 'https://linkedin.com/in/davidrodriguez'
-  },
-  {
-    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face',
-    text: 'SwiftBank\'s KYC verification saved us months of compliance work. The automated document scanning is incredibly accurate.',
-    name: 'Emily Watson',
-    role: 'Product Manager',
-    company: 'Digital Wallet Co',
-    username: '@emilywatson',
-    social: 'https://linkedin.com/in/emilywatson'
+    image:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+    text: "The white-label solution is perfect. Our customers think we built everything in-house. The customization options are endless.",
+    name: "David Rodriguez",
+    role: "Lead Developer",
+    company: "FinTech Pro",
+    username: "@davidrodriguez",
+    social: "https://linkedin.com/in/davidrodriguez",
   },
   {
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face',
-    text: 'The virtual accounts feature is a game-changer. We can now offer instant account creation to our users.',
-    name: 'Michael Thompson',
-    role: 'VP Engineering',
-    company: 'QuickPay',
-    username: '@michaelthompson',
-    social: 'https://linkedin.com/in/michaelthompson'
+    image:
+      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
+    text: "SwiftBank's KYC verification saved us months of compliance work. The automated document scanning is incredibly accurate.",
+    name: "Emily Watson",
+    role: "Product Manager",
+    company: "Digital Wallet Co",
+    username: "@emilywatson",
+    social: "https://linkedin.com/in/emilywatson",
   },
   {
-    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face',
-    text: 'The transaction monitoring and fraud detection capabilities are enterprise-grade. Exactly what we needed for our scale.',
-    name: 'Jessica Park',
-    role: 'Head of Security',
-    company: 'SecureFinance',
-    username: '@jessicapark',
-    social: 'https://linkedin.com/in/jessicapark'
+    image:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
+    text: "The virtual accounts feature is a game-changer. We can now offer instant account creation to our users.",
+    name: "Michael Thompson",
+    role: "VP Engineering",
+    company: "QuickPay",
+    username: "@michaelthompson",
+    social: "https://linkedin.com/in/michaelthompson",
   },
   {
-    image: 'https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=150&h=150&fit=crop&crop=face',
-    text: 'SwiftBank\'s payment processing integration was seamless. UPI and card payments work flawlessly across all our platforms.',
-    name: 'Ryan Foster',
-    role: 'Technical Lead',
-    company: 'PaymentHub',
-    username: '@ryanfoster',
-    social: 'https://linkedin.com/in/ryanfoster'
+    image:
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face",
+    text: "The transaction monitoring and fraud detection capabilities are enterprise-grade. Exactly what we needed for our scale.",
+    name: "Jessica Park",
+    role: "Head of Security",
+    company: "SecureFinance",
+    username: "@jessicapark",
+    social: "https://linkedin.com/in/jessicapark",
   },
-  
-]
+  {
+    image:
+      "https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=150&h=150&fit=crop&crop=face",
+    text: "SwiftBank's payment processing integration was seamless. UPI and card payments work flawlessly across all our platforms.",
+    name: "Ryan Foster",
+    role: "Technical Lead",
+    company: "PaymentHub",
+    username: "@ryanfoster",
+    social: "https://linkedin.com/in/ryanfoster",
+  },
+];
 
 export default function SwiftBankLanding() {
-  const heroRef = useRef<HTMLElement>(null)
-  const cardsRef = useRef<HTMLDivElement>(null)
-  const carouselRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll()
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"])
+  const heroRef = useRef<HTMLElement>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
 
   useEffect(() => {
     // GSAP animations
     const ctx = gsap.context(() => {
       // Hero animations
-      gsap.fromTo(".hero-title",
+      gsap.fromTo(
+        ".hero-title",
         { opacity: 0, y: 100 },
         { opacity: 1, y: 0, duration: 1, ease: "power3.out", delay: 0.2 }
-      )
-      
-      gsap.fromTo(".hero-subtitle",
+      );
+
+      gsap.fromTo(
+        ".hero-subtitle",
         { opacity: 0, y: 50 },
         { opacity: 1, y: 0, duration: 0.8, ease: "power3.out", delay: 0.5 }
-      )
+      );
 
-      gsap.fromTo(".hero-cta",
+      gsap.fromTo(
+        ".hero-cta",
         { opacity: 0, y: 30 },
         { opacity: 1, y: 0, duration: 0.6, ease: "power3.out", delay: 0.8 }
-      )
+      );
 
       // Floating animation for hero cards
       gsap.to(".floating-card", {
@@ -214,27 +176,28 @@ export default function SwiftBankLanding() {
         duration: 2,
         ease: "power2.inOut",
         yoyo: true,
-        repeat: -1
-      })
+        repeat: -1,
+      });
 
       // Carousel animation
       if (carouselRef.current) {
-        const carousel = carouselRef.current
-        const totalWidth = carousel.scrollWidth
-        const containerWidth = carousel.offsetWidth
-        
+        const carousel = carouselRef.current;
+        const totalWidth = carousel.scrollWidth;
+        const containerWidth = carousel.offsetWidth;
+
         gsap.to(carousel, {
           x: -(totalWidth - containerWidth),
           duration: 20,
           ease: "none",
           repeat: -1,
-          repeatDelay: 0
-        })
+          repeatDelay: 0,
+        });
       }
 
       // Scroll-triggered animations
       gsap.utils.toArray(".animate-on-scroll").forEach((element: any) => {
-        gsap.fromTo(element,
+        gsap.fromTo(
+          element,
           { opacity: 0, y: 50 },
           {
             opacity: 1,
@@ -245,16 +208,17 @@ export default function SwiftBankLanding() {
               trigger: element,
               start: "top 80%",
               end: "bottom 20%",
-              toggleActions: "play none none reverse"
-            }
+              toggleActions: "play none none reverse",
+            },
           }
-        )
-      })
+        );
+      });
 
       // Number counter animation
       gsap.utils.toArray(".counter").forEach((counter: any) => {
-        const target = parseInt(counter.getAttribute("data-target"))
-        gsap.fromTo(counter,
+        const target = parseInt(counter.getAttribute("data-target"));
+        gsap.fromTo(
+          counter,
           { textContent: 0 },
           {
             textContent: target,
@@ -263,15 +227,15 @@ export default function SwiftBankLanding() {
             snap: { textContent: 1 },
             scrollTrigger: {
               trigger: counter,
-              start: "top 80%"
-            }
+              start: "top 80%",
+            },
           }
-        )
-      })
-    }, heroRef)
+        );
+      });
+    }, heroRef);
 
-    return () => ctx.revert()
-  }, [])
+    return () => ctx.revert();
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 overflow-x-hidden">
@@ -284,7 +248,7 @@ export default function SwiftBankLanding() {
       >
         <div className="container mx-auto px-4 lg:px-6 h-16 flex items-center justify-between">
           {/* Left: Logo and Title */}
-          <motion.div 
+          <motion.div
             whileHover={{ scale: 1.05 }}
             className="flex items-center space-x-2 flex-shrink-0"
           >
@@ -304,13 +268,13 @@ export default function SwiftBankLanding() {
           <div className="flex-1 flex justify-center">
             <div className="flex items-center gap-3 bg-white/80 border border-gray-200 backdrop-blur-lg py-2 px-2 rounded-full shadow-xl">
               {[
-                { name: 'Home', url: '#', icon: Home },
-                { name: 'Features', url: '#features', icon: Zap },
-                { name: 'Pricing', url: '#pricing', icon: DollarSign },
-                { name: 'Docs', url: '#docs', icon: FileText },
-                { name: 'Contact', url: '#contact', icon: Users }
+                { name: "Home", url: "#", icon: Home },
+                { name: "Features", url: "#features", icon: Zap },
+                { name: "Pricing", url: "#pricing", icon: DollarSign },
+                { name: "Docs", url: "#docs", icon: FileText },
+                { name: "Contact", url: "#contact", icon: Users },
               ].map((item) => {
-                const Icon = item.icon
+                const Icon = item.icon;
                 return (
                   <Link
                     key={item.name}
@@ -322,7 +286,7 @@ export default function SwiftBankLanding() {
                       <Icon size={18} strokeWidth={2.5} />
                     </span>
                   </Link>
-                )
+                );
               })}
             </div>
           </div>
@@ -330,7 +294,10 @@ export default function SwiftBankLanding() {
           {/* Right: Auth Buttons */}
           <div className="flex items-center space-x-4 flex-shrink-0">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button variant="ghost" className="text-gray-700 hover:text-emerald-600 bg-white/80 backdrop-blur-sm border border-gray-200">
+              <Button
+                variant="ghost"
+                className="text-gray-700 hover:text-emerald-600 bg-white/80 backdrop-blur-sm border border-gray-200"
+              >
                 Sign In
               </Button>
             </motion.div>
@@ -345,14 +312,17 @@ export default function SwiftBankLanding() {
       </motion.header>
 
       {/* Hero Section */}
-      <section ref={heroRef} className="relative py-20 lg:py-32 bg-gray-50 overflow-hidden">
+      <section
+        ref={heroRef}
+        className="relative py-20 lg:py-32 bg-gray-50 overflow-hidden"
+      >
         {/* Background geometric shapes */}
         <div className="absolute inset-0 overflow-hidden">
-          <motion.div 
+          <motion.div
             style={{ y }}
             className="absolute top-20 right-10 w-64 h-64 bg-white/10 rounded-full opacity-30"
           />
-          <motion.div 
+          <motion.div
             style={{ y: useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]) }}
             className="absolute bottom-20 left-10 w-48 h-48 bg-white/10 rounded-full opacity-20"
           />
@@ -380,14 +350,21 @@ export default function SwiftBankLanding() {
                 </h1>
 
                 <p className="hero-subtitle text-xl text-gray-600 leading-relaxed max-w-lg">
-                  Developer-friendly banking infrastructure that lets fintech startups build and launch 
-                  digital banking apps with virtual accounts, KYC, payments, and more.
+                  Developer-friendly banking infrastructure that lets fintech
+                  startups build and launch digital banking apps with virtual
+                  accounts, KYC, payments, and more.
                 </p>
               </div>
 
               <div className="hero-cta flex flex-col sm:flex-row gap-4">
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button size="lg" className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white shadow-xl relative overflow-hidden group">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Button
+                    size="lg"
+                    className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white shadow-xl relative overflow-hidden group"
+                  >
                     <span className="absolute inset-0 bg-gradient-to-r from-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></span>
                     <span className="relative flex items-center">
                       Start Building Free
@@ -395,8 +372,15 @@ export default function SwiftBankLanding() {
                     </span>
                   </Button>
                 </motion.div>
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button size="lg" variant="outline" className="border-gray-300 text-gray-700 hover:bg-gray-50 relative overflow-hidden group">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-gray-300 text-gray-700 hover:bg-gray-50 relative overflow-hidden group"
+                  >
                     <span className="absolute inset-0 bg-gradient-to-r from-gray-100/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></span>
                     <span className="relative">View Live Demo</span>
                   </Button>
@@ -404,18 +388,20 @@ export default function SwiftBankLanding() {
               </div>
 
               <div className="flex items-center space-x-8 text-sm text-gray-500">
-                {["Free sandbox", "5-min setup", "Full API access"].map((item, index) => (
-                  <motion.div
-                    key={item}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 1 + index * 0.1 }}
-                    className="flex items-center space-x-2"
-                  >
-                    <CheckCircle className="h-4 w-4 text-emerald-500" />
-                    <span>{item}</span>
-                  </motion.div>
-                ))}
+                {["Free sandbox", "5-min setup", "Full API access"].map(
+                  (item, index) => (
+                    <motion.div
+                      key={item}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 1 + index * 0.1 }}
+                      className="flex items-center space-x-2"
+                    >
+                      <CheckCircle className="h-4 w-4 text-emerald-500" />
+                      <span>{item}</span>
+                    </motion.div>
+                  )
+                )}
               </div>
             </div>
 
@@ -478,54 +464,64 @@ export default function SwiftBankLanding() {
               <span className="text-emerald-500 block">TO BUILD & SCALE</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Complete banking infrastructure with developer-friendly APIs and white-label solutions
+              Complete banking infrastructure with developer-friendly APIs and
+              white-label solutions
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" ref={cardsRef}>
+          <div
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+            ref={cardsRef}
+          >
             {[
               {
                 icon: Database,
                 title: "Virtual Accounts",
-                description: "Create unlimited virtual accounts with instant setup and real-time balance management for your users.",
+                description:
+                  "Create unlimited virtual accounts with instant setup and real-time balance management for your users.",
                 color: "bg-emerald-500",
-                number: "01"
+                number: "01",
               },
               {
                 icon: UserCheck,
                 title: "KYC Verification",
-                description: "Automated identity verification with document scanning, face matching, and compliance reporting.",
+                description:
+                  "Automated identity verification with document scanning, face matching, and compliance reporting.",
                 color: "bg-gray-900",
-                number: "02"
+                number: "02",
               },
               {
                 icon: CreditCard,
                 title: "UPI & Card Integration",
-                description: "Complete payment processing with UPI, debit/credit cards, and international payment support.",
+                description:
+                  "Complete payment processing with UPI, debit/credit cards, and international payment support.",
                 color: "bg-teal-500",
-                number: "03"
+                number: "03",
               },
               {
                 icon: Activity,
                 title: "Transaction Monitoring",
-                description: "Real-time fraud detection, transaction analytics, and automated compliance monitoring.",
+                description:
+                  "Real-time fraud detection, transaction analytics, and automated compliance monitoring.",
                 color: "bg-gray-900",
-                number: "04"
+                number: "04",
               },
               {
                 icon: Code,
                 title: "Banking APIs",
-                description: "RESTful APIs with comprehensive documentation, SDKs, and webhook support for seamless integration.",
+                description:
+                  "RESTful APIs with comprehensive documentation, SDKs, and webhook support for seamless integration.",
                 color: "bg-emerald-500",
-                number: "05"
+                number: "05",
               },
               {
                 icon: Smartphone,
                 title: "User & Admin Dashboards",
-                description: "White-label web and mobile dashboards with customizable branding and user management tools.",
+                description:
+                  "White-label web and mobile dashboards with customizable branding and user management tools.",
                 color: "bg-teal-500",
-                number: "06"
-              }
+                number: "06",
+              },
             ].map((feature, index) => (
               <motion.div
                 key={index}
@@ -536,7 +532,9 @@ export default function SwiftBankLanding() {
                 whileHover={{ y: -10, transition: { duration: 0.2 } }}
                 className="group"
               >
-                <Card className={`${feature.color} text-white border-0 shadow-xl hover:shadow-2xl transition-all duration-300 h-full relative overflow-hidden`}>
+                <Card
+                  className={`${feature.color} text-white border-0 shadow-xl hover:shadow-2xl transition-all duration-300 h-full relative overflow-hidden`}
+                >
                   <div className="absolute top-4 right-4 text-6xl font-bold opacity-10">
                     {feature.number}
                   </div>
@@ -583,24 +581,27 @@ export default function SwiftBankLanding() {
               {
                 step: "01",
                 title: "Sign Up & Configure",
-                description: "Create your account, customize branding, and configure your banking features through our intuitive dashboard.",
+                description:
+                  "Create your account, customize branding, and configure your banking features through our intuitive dashboard.",
                 color: "bg-emerald-500",
-                icon: UserCheck
+                icon: UserCheck,
               },
               {
                 step: "02",
                 title: "Integrate APIs",
-                description: "Use our comprehensive APIs and SDKs to integrate banking features into your app with just a few lines of code.",
+                description:
+                  "Use our comprehensive APIs and SDKs to integrate banking features into your app with just a few lines of code.",
                 color: "bg-gray-900",
-                icon: Code
+                icon: Code,
               },
               {
                 step: "03",
                 title: "Go Live",
-                description: "Deploy your digital banking app to production with full compliance, monitoring, and support included.",
+                description:
+                  "Deploy your digital banking app to production with full compliance, monitoring, and support included.",
                 color: "bg-teal-500",
-                icon: Zap
-              }
+                icon: Zap,
+              },
             ].map((step, index) => (
               <motion.div
                 key={index}
@@ -611,7 +612,9 @@ export default function SwiftBankLanding() {
                 whileHover={{ y: -10, transition: { duration: 0.2 } }}
                 className="group"
               >
-                <Card className={`${step.color} text-white border-0 shadow-xl hover:shadow-2xl transition-all duration-300 h-full relative overflow-hidden`}>
+                <Card
+                  className={`${step.color} text-white border-0 shadow-xl hover:shadow-2xl transition-all duration-300 h-full relative overflow-hidden`}
+                >
                   <div className="absolute top-4 right-4 text-6xl font-bold opacity-10">
                     {step.step}
                   </div>
@@ -638,10 +641,7 @@ export default function SwiftBankLanding() {
       {/* Testimonials Section */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 lg:px-6">
-          <Testimonials 
-            testimonials={swiftBankTestimonials}
-            maxDisplayed={6}
-          />
+          <Testimonials testimonials={swiftBankTestimonials} maxDisplayed={6} />
         </div>
       </section>
 
@@ -663,5 +663,5 @@ export default function SwiftBankLanding() {
       {/* footer  */}
       <Footerdemo />
     </div>
-  )
+  );
 }
