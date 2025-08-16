@@ -79,10 +79,13 @@ export function NavBar({ items, className }: NavBarProps) {
           );
         })}
       </div>
-      {/* Mobile menu overlay (centered modal/card, only nav links, no auth buttons) */}
       {mobileOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
-          <div className="relative w-11/12 max-w-sm bg-white rounded-2xl shadow-2xl p-8 flex flex-col items-center mx-auto">
+        <>
+          <div
+            className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm"
+            onClick={() => setMobileOpen(false)}
+          />
+          <div className="fixed top-0 right-0 h-full w-full max-w-xs bg-white shadow-2xl p-8 flex flex-col z-50 animate-slideInLeft">
             <button
               className="absolute top-4 right-4 text-gray-700"
               onClick={() => setMobileOpen(false)}
@@ -90,7 +93,7 @@ export function NavBar({ items, className }: NavBarProps) {
             >
               <X size={32} />
             </button>
-            <nav className="flex flex-col gap-6 mt-6 w-full items-center">
+            <nav className="flex flex-col gap-6 mt-12 w-full items-start">
               {items.map((item) => {
                 const Icon = item.icon;
                 const isActive = activeTab === item.name;
@@ -103,11 +106,10 @@ export function NavBar({ items, className }: NavBarProps) {
                       setMobileOpen(false);
                     }}
                     className={cn(
-                      "flex items-center gap-4 text-xl font-semibold px-6 py-3 rounded-full transition-all duration-300 w-full justify-center text-center",
+                      "flex items-center gap-4 text-xl font-semibold px-2 py-3 rounded-full transition-all duration-300 w-full",
                       "text-gray-700 hover:text-emerald-600 hover:bg-emerald-50",
                       isActive && "bg-emerald-100 text-emerald-700"
                     )}
-                    style={{ wordBreak: "break-word", whiteSpace: "normal" }}
                   >
                     <Icon size={24} />
                     <span>{item.name}</span>
@@ -116,7 +118,7 @@ export function NavBar({ items, className }: NavBarProps) {
               })}
             </nav>
           </div>
-        </div>
+        </>
       )}
     </div>
   );
