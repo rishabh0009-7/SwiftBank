@@ -71,23 +71,25 @@ export function Testimonials({
                 key={index}
                 className="p-4 sm:p-6 relative bg-white/80 backdrop-blur-sm border-gray-100 shadow-lg hover:shadow-xl transition-all duration-300 h-full"
               >
-                <div className="flex items-center mb-4">
-                  <Image
-                    src={testimonial.image || "/placeholder.svg"}
-                    alt={testimonial.name}
-                    width={50}
-                    height={50}
-                    className="rounded-full w-12 h-12 sm:w-14 sm:h-14 object-cover"
-                  />
-                  <div className="flex flex-col pl-3 sm:pl-4">
-                    <span className="font-semibold text-sm sm:text-base text-gray-900">
+                <div className="flex flex-row items-center gap-4 mb-4">
+                  <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14">
+                    <Image
+                      src={testimonial.image || "/placeholder.svg"}
+                      alt={testimonial.name}
+                      width={50}
+                      height={50}
+                      className="rounded-full w-12 h-12 sm:w-14 sm:h-14 object-cover"
+                    />
+                  </div>
+                  <div className="flex-1 min-w-0 flex flex-col pl-1 sm:pl-2">
+                    <span className="font-semibold text-sm sm:text-base text-gray-900 truncate">
                       {testimonial.name}
                     </span>
-                    <span className="text-xs sm:text-sm text-gray-500">
+                    <span className="text-xs sm:text-sm text-gray-500 truncate">
                       {testimonial.role}
                     </span>
                     {testimonial.company && (
-                      <span className="text-xs text-emerald-600 font-medium">
+                      <span className="text-xs text-emerald-600 font-medium truncate">
                         {testimonial.company}
                       </span>
                     )}

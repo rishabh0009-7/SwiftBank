@@ -298,7 +298,7 @@ export default function SwiftBankLanding() {
       {/* Hero Section */}
       <section
         ref={heroRef}
-        className="relative py-12 sm:py-20 lg:py-32 bg-gray-50 overflow-hidden"
+        className="relative py-8 sm:py-12 lg:py-20 bg-gray-50 overflow-hidden"
       >
         {/* Background geometric shapes */}
         <div className="absolute inset-0 overflow-hidden">
@@ -314,8 +314,8 @@ export default function SwiftBankLanding() {
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid gap-12 items-center lg:grid-cols-2">
-            <div className="space-y-8">
+          <div className="grid gap-8 lg:grid-cols-7 items-center">
+            <div className="space-y-8 lg:col-span-4">
               <div className="space-y-6">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
@@ -389,20 +389,23 @@ export default function SwiftBankLanding() {
               </div>
             </div>
 
-            <div className="relative">
+            {/* Right: Hero Image, blend with background */}
+            <div className="relative flex justify-center items-center lg:col-span-3">
               <motion.div
-                initial={{ opacity: 0, scale: 0.8, rotateY: -15 }}
-                animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+                initial={{ opacity: 0, scale: 1.1, rotateY: -10 }}
+                animate={{ opacity: 1, scale: 1.35, rotateY: 0 }}
                 transition={{ duration: 1, delay: 0.5 }}
-                className="floating-card relative"
+                className="relative flex justify-center items-center"
               >
-                <div className="relative">
+                <div className="relative flex justify-center items-center w-full">
                   <Image
-                    src="/heroimg.png"
-                    alt="Digital Banking Platform Illustration"
-                    width={600}
-                    height={500}
-                    className="rounded-2xl w-full max-w-xs sm:max-w-md md:max-w-lg h-auto mx-auto"
+                    src="/HeroFinal.png"
+                    alt="SwiftBank Floating Phone Hero"
+                    width={1200}
+                    height={1200}
+                    className="w-full max-w-2xl h-auto mx-auto"
+                    priority
+                    style={{ background: "none" }}
                   />
                 </div>
               </motion.div>
