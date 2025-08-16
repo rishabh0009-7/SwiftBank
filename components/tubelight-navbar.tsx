@@ -1,83 +1,123 @@
-"use client"
+"use client";
 
-import React, { useEffect, useState } from "react"
-import { motion } from "framer-motion"
-import Link from "next/link"
-import { type LucideIcon } from 'lucide-react'
-import { cn } from "@/lib/utils"
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { type LucideIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Menu, X } from "lucide-react";
 
 interface NavItem {
-  name: string
-  url: string
-  icon: LucideIcon
+  name: string;
+  url: string;
+  icon: LucideIcon;
 }
 
 interface NavBarProps {
-  items: NavItem[]
-  className?: string
+  items: NavItem[];
+  className?: string;
+  authButtons?: React.ReactNode;
 }
 
 export function NavBar({ items, className }: NavBarProps) {
-  const [activeTab, setActiveTab] = useState(items[0].name)
-  const [isMobile, setIsMobile] = useState(false)
+  const [activeTab, setActiveTab] = useState(items[0].name);
+  const [isMobile, setIsMobile] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-    handleResize()
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [])
+      setIsMobile(window.innerWidth < 768);
+      if (window.innerWidth >= 768) setMobileOpen(false);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <div
       className={cn(
-        "fixed top-6 left-1/2 -translate-x-1/2 z-50",
-        className,
+        // Centered, pill-shaped, visually prominent on desktop
+        "relative flex items-center justify-center w-full",
+        className
       )}
+      style={{ minHeight: "48px" }}
     >
-      <div className="flex items-center gap-3 bg-white/80 border border-gray-200 backdrop-blur-lg py-2 px-2 rounded-full shadow-xl">
+      {/* Hamburger for mobile (rightmost) */}
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 md:hidden">
+        <button
+          className="flex items-center px-3 py-2 rounded text-gray-700 focus:outline-none"
+          onClick={() => setMobileOpen(true)}
+          aria-label="Open navigation menu"
+        >
+          <Menu size={28} />
+        </button>
+      </div>
+      {/* Desktop nav (centered, pill, modern) */}
+      <div className="hidden md:flex items-center justify-center bg-white/90 border border-gray-200 backdrop-blur-lg py-2 px-6 rounded-full shadow-lg min-h-[48px] gap-2">
         {items.map((item) => {
-          const Icon = item.icon
-          const isActive = activeTab === item.name
+          const Icon = item.icon;
+          const isActive = activeTab === item.name;
           return (
             <Link
               key={item.name}
               href={item.url}
               onClick={() => setActiveTab(item.name)}
               className={cn(
-                "relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-all duration-300",
+                "relative cursor-pointer text-base font-semibold px-5 py-2 rounded-full transition-all duration-300",
                 "text-gray-600 hover:text-emerald-600",
-                isActive && "bg-emerald-50 text-emerald-600",
+                isActive && "bg-emerald-50 text-emerald-600"
               )}
+              style={{
+                minHeight: "40px",
+                display: "flex",
+                alignItems: "center",
+              }}
             >
-              <span className="hidden md:inline">{item.name}</span>
-              <span className="md:hidden">
-                <Icon size={18} strokeWidth={2.5} />
-              </span>
-              {isActive && (
-                <motion.div
-                  layoutId="lamp"
-                  className="absolute inset-0 w-full bg-emerald-100/50 rounded-full -z-10"
-                  initial={false}
-                  transition={{
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 30,
-                  }}
-                >
-                  <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-emerald-500 rounded-t-full">
-                    <div className="absolute w-12 h-6 bg-emerald-500/20 rounded-full blur-md -top-2 -left-2" />
-                    <div className="absolute w-8 h-6 bg-emerald-500/20 rounded-full blur-md -top-1" />
-                    <div className="absolute w-4 h-4 bg-emerald-500/20 rounded-full blur-sm top-0 left-2" />
-                  </div>
-                </motion.div>
-              )}
+              <span className="inline">{item.name}</span>
             </Link>
-          )
+          );
         })}
       </div>
+      {/* Mobile menu overlay (centered modal/card, only nav links, no auth buttons) */}
+      {mobileOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+          <div className="relative w-11/12 max-w-sm bg-white rounded-2xl shadow-2xl p-8 flex flex-col items-center mx-auto">
+            <button
+              className="absolute top-4 right-4 text-gray-700"
+              onClick={() => setMobileOpen(false)}
+              aria-label="Close navigation menu"
+            >
+              <X size={32} />
+            </button>
+            <nav className="flex flex-col gap-6 mt-6 w-full items-center">
+              {items.map((item) => {
+                const Icon = item.icon;
+                const isActive = activeTab === item.name;
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.url}
+                    onClick={() => {
+                      setActiveTab(item.name);
+                      setMobileOpen(false);
+                    }}
+                    className={cn(
+                      "flex items-center gap-4 text-xl font-semibold px-6 py-3 rounded-full transition-all duration-300 w-full justify-center text-center",
+                      "text-gray-700 hover:text-emerald-600 hover:bg-emerald-50",
+                      isActive && "bg-emerald-100 text-emerald-700"
+                    )}
+                    style={{ wordBreak: "break-word", whiteSpace: "normal" }}
+                  >
+                    <Icon size={24} />
+                    <span>{item.name}</span>
+                  </Link>
+                );
+              })}
+            </nav>
+          </div>
+        </div>
+      )}
     </div>
-  )
+  );
 }

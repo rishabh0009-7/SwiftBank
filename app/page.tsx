@@ -49,6 +49,7 @@ import { CTA } from "@/components/ui/Cta";
 import { LogoCarousel, fintechLogos } from "@/components/ui/carousel";
 import { GradientHeading } from "@/components/ui/gradiet-heading";
 import { PAYMENT_FREQUENCIES, TIERS } from "@/lib/constants";
+import { NavBar } from "@/components/tubelight-navbar";
 
 // Register GSAP plugins
 if (typeof window !== "undefined") {
@@ -246,12 +247,9 @@ export default function SwiftBankLanding() {
         transition={{ duration: 0.6 }}
         className="border-b border-gray-200 bg-white/80 backdrop-blur-lg sticky top-0 z-50"
       >
-        <div className="container mx-auto px-4 lg:px-6 h-16 flex items-center justify-between">
+        <div className="container mx-auto px-4 lg:px-6 h-16 flex items-center justify-between relative">
           {/* Left: Logo and Title */}
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="flex items-center space-x-2 flex-shrink-0"
-          >
+          <div className="flex items-center space-x-2 flex-shrink-0 z-10">
             <div className="w-10 h-10 rounded-lg flex items-center justify-center overflow-hidden">
               <Image
                 src="/logo.png"
@@ -262,37 +260,23 @@ export default function SwiftBankLanding() {
               />
             </div>
             <span className="text-xl font-bold text-gray-900">SwiftBank</span>
-          </motion.div>
+          </div>
 
-          {/* Center: Tubelight Navigation */}
-          <div className="flex-1 flex justify-center">
-            <div className="flex items-center gap-3 bg-white/80 border border-gray-200 backdrop-blur-lg py-2 px-2 rounded-full shadow-xl">
-              {[
+          {/* Center: Absolutely centered NavBar (only one instance) */}
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+            <NavBar
+              items={[
                 { name: "Home", url: "#", icon: Home },
                 { name: "Features", url: "#features", icon: Zap },
                 { name: "Pricing", url: "#pricing", icon: DollarSign },
                 { name: "Docs", url: "#docs", icon: FileText },
                 { name: "Contact", url: "#contact", icon: Users },
-              ].map((item) => {
-                const Icon = item.icon;
-                return (
-                  <Link
-                    key={item.name}
-                    href={item.url}
-                    className="relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-all duration-300 text-gray-600 hover:text-emerald-600 hover:bg-emerald-50"
-                  >
-                    <span className="hidden md:inline">{item.name}</span>
-                    <span className="md:hidden">
-                      <Icon size={18} strokeWidth={2.5} />
-                    </span>
-                  </Link>
-                );
-              })}
-            </div>
+              ]}
+            />
           </div>
 
           {/* Right: Auth Buttons */}
-          <div className="flex items-center space-x-4 flex-shrink-0">
+          <div className="flex items-center space-x-2 md:space-x-4 z-10">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 variant="ghost"
@@ -314,7 +298,7 @@ export default function SwiftBankLanding() {
       {/* Hero Section */}
       <section
         ref={heroRef}
-        className="relative py-20 lg:py-32 bg-gray-50 overflow-hidden"
+        className="relative py-12 sm:py-20 lg:py-32 bg-gray-50 overflow-hidden"
       >
         {/* Background geometric shapes */}
         <div className="absolute inset-0 overflow-hidden">
@@ -329,8 +313,8 @@ export default function SwiftBankLanding() {
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-purple-400/20 to-pink-400/20 rounded-full blur-3xl"></div>
         </div>
 
-        <div className="container mx-auto px-4 lg:px-6 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid gap-12 items-center lg:grid-cols-2">
             <div className="space-y-8">
               <div className="space-y-6">
                 <motion.div
@@ -343,20 +327,20 @@ export default function SwiftBankLanding() {
                   </Badge>
                 </motion.div>
 
-                <h1 className="hero-title text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
+                <h1 className="hero-title text-3xl sm:text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
                   Launch Your
                   <span className="text-emerald-500 block">Digital Bank</span>
                   <span className="text-gray-900">in Days, Not Years</span>
                 </h1>
 
-                <p className="hero-subtitle text-xl text-gray-600 leading-relaxed max-w-lg">
+                <p className="hero-subtitle text-base sm:text-xl text-gray-600 leading-relaxed max-w-lg">
                   Developer-friendly banking infrastructure that lets fintech
                   startups build and launch digital banking apps with virtual
                   accounts, KYC, payments, and more.
                 </p>
               </div>
 
-              <div className="hero-cta flex flex-col sm:flex-row gap-4">
+              <div className="hero-cta flex flex-col gap-4 sm:flex-row">
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -387,7 +371,7 @@ export default function SwiftBankLanding() {
                 </motion.div>
               </div>
 
-              <div className="flex items-center space-x-8 text-sm text-gray-500">
+              <div className="flex items-center space-x-4 sm:space-x-8 text-xs sm:text-sm text-gray-500">
                 {["Free sandbox", "5-min setup", "Full API access"].map(
                   (item, index) => (
                     <motion.div
@@ -418,7 +402,7 @@ export default function SwiftBankLanding() {
                     alt="Digital Banking Platform Illustration"
                     width={600}
                     height={500}
-                    className="rounded-2xl"
+                    className="rounded-2xl w-full max-w-xs sm:max-w-md md:max-w-lg h-auto mx-auto"
                   />
                 </div>
               </motion.div>
@@ -428,8 +412,8 @@ export default function SwiftBankLanding() {
       </section>
 
       {/* Trusted By Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 lg:px-6">
+      <section className="py-12 sm:py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -450,8 +434,8 @@ export default function SwiftBankLanding() {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4 lg:px-6">
+      <section id="features" className="py-12 sm:py-20 bg-gray-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -470,7 +454,7 @@ export default function SwiftBankLanding() {
           </motion.div>
 
           <div
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
             ref={cardsRef}
           >
             {[
@@ -559,8 +543,8 @@ export default function SwiftBankLanding() {
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="py-20 bg-white">
-        <div className="container mx-auto px-4 lg:px-6">
+      <section id="how-it-works" className="py-12 sm:py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -576,7 +560,7 @@ export default function SwiftBankLanding() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid gap-8 md:grid-cols-3">
             {[
               {
                 step: "01",
@@ -639,15 +623,15 @@ export default function SwiftBankLanding() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4 lg:px-6">
+      <section className="py-12 sm:py-20 bg-gray-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <Testimonials testimonials={swiftBankTestimonials} maxDisplayed={6} />
         </div>
       </section>
 
       {/* Pricing Section - Updated with new component */}
-      <section id="pricing" className="py-20 bg-white">
-        <div className="container mx-auto px-4 lg:px-6">
+      <section id="pricing" className="py-12 sm:py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <PricingSection
             title="Developer-Friendly Pricing"
             subtitle="Start free, scale as you grow. No hidden fees, no setup costs."
