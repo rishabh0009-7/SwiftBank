@@ -399,8 +399,8 @@ export default function SwiftBankLanding() {
               >
                 <div className="relative flex justify-center items-center w-full">
                   <Image
-                    src="/HeroFinal.png"
-                    alt="SwiftBank Floating Phone Hero"
+                    src="/ImageHero.png"
+                    alt="SwiftBank mobile app"
                     width={1200}
                     height={1200}
                     className="w-full max-w-2xl h-auto mx-auto"
